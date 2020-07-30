@@ -27,8 +27,9 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="query">Query</a></li>
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="query">Catalog</a></li>
+					<li><a href="cart">Cart</a></li>
 				</ul>
 			</div>
 		</div>
@@ -43,22 +44,22 @@
 
 				<thead>
 					<tr>
-						<th>Username</th>
-						<th>Name</th>
-						<th>Age</th>
-						<th>Bird Date</th>
+						<th>Product</th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Stock</th>
+						<th>Add to Cart</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<c:forEach var="item" items="${list}">
 						<tr>
-							<td>${item.username}</td>
-							<td>${item.first_name}${item.last_name}</td>
-							<td>${item.age}</td>
-							<td><fmt:formatDate pattern="yyyy-MM-dd"
-									value="${item.date_bird}" />
-							<td>
+							<td>${item.name}</td>
+							<td>${item.description}</td>
+							<td>${item.price}</td>
+							<td>${item.instock}<td>
+							<th><button>Add</button></th>
 						</tr>
 					</c:forEach>
 				</tbody>

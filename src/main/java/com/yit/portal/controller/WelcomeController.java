@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yit.portal.bean.Product;
 import com.yit.portal.bean.User;
+import com.yit.portal.util.RestClient;
 
 @Controller
 public class WelcomeController {
@@ -31,25 +33,12 @@ public class WelcomeController {
 	public ModelAndView query(@RequestParam(value="name", required=false) String name) {
 		ModelAndView mv = new ModelAndView("list");
         
-		List<User> list = new ArrayList<User>();
+		RestClient rc = new RestClient();
+		String result = rc.get("http://gateway-boot-git:8080/getProduct");
 		
-		User u1 = new User();
-		u1.setAge(30);
-		u1.setDate_bird(new Date());
-        u1.setFirst_name("Kriangsak");
-    	u1.setLast_name("Pornpantiva");
-    	u1.setUsername("kriangpo");
-    	
-    	User u2 = new User();
-		u2.setAge(35);
-		u2.setDate_bird(new Date());
-        u2.setFirst_name("Test1");
-    	u2.setLast_name("Test");
-    	u2.setUsername("test");
-    	
-    	list.add(u1);
-    	list.add(u2);
-    	
+		
+		List<Product> list = Product.buildJsonToCallsObject(result);
+		
         mv.addObject("list",list);
         
         return mv;
