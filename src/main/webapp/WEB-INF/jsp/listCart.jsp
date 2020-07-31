@@ -20,19 +20,19 @@
 
 <script type="text/javascript">
 
-function addToCart(id){
+function deleteCart(product_id){
 	
 	$.ajax({
 		  type: "POST",
-		  url: '${contextPath}/addToCart',
-		  data: {id: id},
+		  url: '${contextPath}/deleteItem',
+		  data: {product_id: product_id},
 		  success: function(data){	
 			  if(data.indexOf('<!DOCTYPE html') == 0){
 				  location.reload();
 			  } else if(data.indexOf('Error::') == 0){
 				  alert("Error");
 			  } else {
-				  alert('Success');
+				  buildTable(data);
 			  }
 			  		
 		  },
@@ -40,6 +40,29 @@ function addToCart(id){
 		 		alert('dd '+textStatus);
 		  }
 	});
+	
+}
+
+function buildTable(data){
+	
+	var json = $.parseJSON(data);
+	
+	$('#cartTable tbody').empty();
+	
+	var tdE = '';
+	for(i in json){
+		tdE += '<tr>'
+		+'<td>'+json[i].product.name+'</td>'
+		+'<td>'+json[i].product.description+'</td>'
+		+'<td>'+json[i].product.price+'</td>'
+		+'<td>'+json[i].unit+'</td>'
+		+'<td>'+json[i].amount+'</td>'
+		+'<td align="left">'
+			+'<button onclick="deleteCart('+json[i].product_id+')">Delete</button>'
+		+'</td>'
+		+'</tr>'
+	}
+	$('#cartTable tbody').html(tdE);
 	
 }
 
@@ -55,7 +78,7 @@ function addToCart(id){
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/">Catalog</a></li>
-					<li><a href="cart">Cart</a></li>
+					<li><a href="/cart">Cart</a></li>
 				</ul>
 			</div>
 		</div>
@@ -66,14 +89,15 @@ function addToCart(id){
 		<div class="starter-template">
 			<h1>Query List</h1>
 
-			<table class="table table-striped">
+			<table class="table table-striped" id="cartTable">
 
 				<thead>
 					<tr>
 						<th>Product</th>
 						<th>Description</th>
 						<th>Price</th>
-						
+						<th>Unit</th>
+						<th>Amount</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -81,12 +105,13 @@ function addToCart(id){
 				<tbody>
 					<c:forEach var="item" items="${list}">
 						<tr>
-							<td>${item.name}</td>
-							<td>${item.description}</td>
-							<td>${item.price}</td>
-							
+							<td>${item.product.name}</td>
+							<td>${item.product.description}</td>
+							<td>${item.product.price}</td>
+							<td>${item.unit}</td>
+							<td>${item.amount}</td>
 							<td align="left">
-								<button onclick="addToCart(${item.id})">AddToCart</button>
+								<button onclick="deleteCart(${item.product_id})">Delete</button>
 							</td>
 						</tr>
 					</c:forEach>

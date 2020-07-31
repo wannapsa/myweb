@@ -7,29 +7,34 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.yit.portal.bean.Cart;
 import com.yit.portal.bean.Product;
 import com.yit.portal.bean.User;
 import com.yit.portal.util.RestClient;
 
-@Controller
+@RestController
 public class WelcomeController {
 
 	// inject via application.properties
 	@Value("${welcome.message:test}")
 	private String message = "Hello World";
 
-	@RequestMapping("/")
+	@RequestMapping("/dd")
 	public String welcome(Map<String, Object> model) {
 		model.put("message", this.message);
 		return "welcome";
 	}
 
-	@RequestMapping( value = "/query", method = RequestMethod.GET)
+	@RequestMapping( value = "/", method = RequestMethod.GET)
 	public ModelAndView query(@RequestParam(value="name", required=false) String name) {
 		ModelAndView mv = new ModelAndView("list");
         
@@ -44,6 +49,59 @@ public class WelcomeController {
         return mv;
 	}
 
+	@RequestMapping( value = "/cart", method = RequestMethod.GET)
+	public ModelAndView cart() {
+		ModelAndView mv = new ModelAndView("listCart");
+        
+		RestClient rc = new RestClient();
+		String result = rc.get("http://gateway-boot-git:8080/getCart");
+		
+		
+		List<Cart> list = Cart.buildJsonToCallsObject(result);
+		
+        mv.addObject("list",list);
+        
+        return mv;
+	}
 	
+	@PostMapping("/addToCart")
+	public String save(@RequestParam("id") String id) {
+		
+		System.out.println("portal debug add to cart " + id);
+		
+		Cart c = new Cart();
+		c.setProduct_id(Integer.parseInt(id));
+		
+		
+		Gson gson = new Gson();
+		
+		
+		RestClient rc = new RestClient();
+		String result = rc.post("http://gateway-boot-git:8080/addToCart",gson.toJson(c));
+	
+		System.out.println("result post " + result);
+		
+        return result;
+	}
+	
+	@PostMapping("/deleteItem")
+	public String deleteItem(@RequestParam("product_id") String product_id) {
+		
+		System.out.println("portal debug delete cart " + product_id);
+		
+		Cart c = new Cart();
+		c.setProduct_id(Integer.parseInt(product_id));
+		
+		
+		Gson gson = new Gson();
+		
+		
+		RestClient rc = new RestClient();
+		String result = rc.post("http://gateway-boot-git:8080/deleteItem",gson.toJson(c));
+	
+		System.out.println("result delete product " + result);
+		
+        return result;
+	}
 	
 }

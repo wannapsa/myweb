@@ -25,8 +25,8 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="query">Query</a></li>
+					<li><a href="query">Catalog</a></li>
+					<li><a href="cart">Cart</a></li>
 				</ul>
 			</div>
 		</div>
