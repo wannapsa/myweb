@@ -23,38 +23,22 @@
 	</properties>
 
 	<repositories>
-
 		<repository>
-
 			<id>openshift-repository</id>
-
 			<url>https://mirror.openshift.com/nexus/content/groups/public</url>
-
 		</repository>
-
 	</repositories>
-	
+
 	<distributionManagement>
-
-        <repository>
-
-            <id>nexus</id>
-
-            <url>http://nexus:8081/content/repositories/releases</url>
-
-        </repository>
-
-        <snapshotRepository>
-
-            <id>nexus</id>
-
-            <url>http://nexus:8081/content/repositories/snapshots</url>
-
-        </snapshotRepository>
-
-    </distributionManagement>
-    
-
+		<repository>
+			<id>nexus</id>
+			<url>http://nexus:8081/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus</id>
+			<url>http://nexus:8081/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
@@ -135,13 +119,28 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-		<finalName>ROOT</finalName>
-	</build>
+	<plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+
+		<plugin>
+			<artifactId>maven-deploy-plugin</artifactId>
+			<version>2.8.1</version>
+			<executions>
+				<execution>
+					<id>default-deploy</id>
+					<phase>deploy</phase>
+					<goals>
+						<goal>deploy</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+
+	</plugins>
+	<finalName>ROOT</finalName>
+</build>
 
 </project>
