@@ -1,52 +1,19 @@
+<?xml version="1.0"?>
 <settings>
-  <servers>
-     <server>
-        <id>nexus</id>
-        <username>deployment</username>
-        <password>deployment123</password>
-     </server>
-     <server>
-        <id>nexus3</id>
-        <username>admin</username>
-        <password>admin123</password>
-     </server>
-  </servers>
   <mirrors>
     <mirror>
-      <!--This sends everything else to /public -->
       <id>nexus</id>
-      <mirrorOf>*</mirrorOf>
+      <name>Nexus Public Mirror</name>
+<!--       <url>http://nexus3-mics-tools.cloudapps.inet.local/repository/maven-public/</url> -->
       <url>http://172.26.8.218:8081/repository/maven-public/</url>
+      <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
-  <profiles>
-    <profile>
+  <servers>
+    <server>
       <id>nexus</id>
-      <!--Enable snapshots for the built in central repo to direct -->
-      <!--all requests to nexus via the mirror -->
-      <repositories>
-        <repository>
-          <id>central</id>
-          <url>http://central</url>
-          <releases><enabled>true</enabled></releases>
-          <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-      </repositories>
-     <pluginRepositories>
-        <pluginRepository>
-          <id>central</id>
-          <url>http://central</url>
-          <releases><enabled>true</enabled></releases>
-          <snapshots>
-            <enabled>true</enabled>
-            <updatePolicy>daily</updatePolicy>
-          </snapshots>
-        </pluginRepository>
-      </pluginRepositories>
-    </profile>
-  </profiles>
-  <activeProfiles>
-    <!--make the profile active all the time -->
-    <activeProfile>nexus</activeProfile>
-  </activeProfiles>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+  </servers>
 </settings>
