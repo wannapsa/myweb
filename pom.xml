@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>myweb</artifactId>
-	<version>0.0.1-RELEASE</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>myweb</name>
 	<description>Demo project for Spring Boot</description>
@@ -120,6 +120,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>openshift-tasks</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
