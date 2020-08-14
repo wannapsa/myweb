@@ -31,7 +31,7 @@ public class WelcomeController {
 	@RequestMapping("/dd")
 	public String welcome(Map<String, Object> model) {
 		model.put("message", this.message);
-		return "welcome test rollout 4";
+		return "welcome test rollout 5";
 	}
 
 	@RequestMapping( value = "/", method = RequestMethod.GET)
