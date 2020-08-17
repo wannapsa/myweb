@@ -31,7 +31,7 @@ public class WelcomeController {
 	@RequestMapping("/dd")
 	public String welcome(Map<String, Object> model) {
 		model.put("message", this.message);
-		return "welcome test rollout 6";
+		return "welcome test rollout 7";
 	}
 
 	@RequestMapping( value = "/", method = RequestMethod.GET)
@@ -40,7 +40,6 @@ public class WelcomeController {
         
 		RestClient rc = new RestClient();
 		String result = rc.get("http://gateway-boot-git:8080/getProduct");
-		
 		
 		List<Product> list = Product.buildJsonToCallsObject(result);
 		
@@ -56,7 +55,6 @@ public class WelcomeController {
 		RestClient rc = new RestClient();
 		String result = rc.get("http://gateway-boot-git:8080/getCart");
 		
-		
 		List<Cart> list = Cart.buildJsonToCallsObject(result);
 		
         mv.addObject("list",list);
@@ -67,19 +65,13 @@ public class WelcomeController {
 	@PostMapping("/addToCart")
 	public String save(@RequestParam("id") String id) {
 		
-		System.out.println("portal debug add to cart " + id);
-		
 		Cart c = new Cart();
 		c.setProduct_id(Integer.parseInt(id));
 		
-		
 		Gson gson = new Gson();
-		
 		
 		RestClient rc = new RestClient();
 		String result = rc.post("http://gateway-boot-git:8080/addToCart",gson.toJson(c));
-	
-		System.out.println("result post " + result);
 		
         return result;
 	}
@@ -87,19 +79,13 @@ public class WelcomeController {
 	@PostMapping("/deleteItem")
 	public String deleteItem(@RequestParam("product_id") String product_id) {
 		
-		System.out.println("portal debug delete cart " + product_id);
-		
 		Cart c = new Cart();
 		c.setProduct_id(Integer.parseInt(product_id));
 		
-		
 		Gson gson = new Gson();
-		
 		
 		RestClient rc = new RestClient();
 		String result = rc.post("http://gateway-boot-git:8080/deleteItem",gson.toJson(c));
-	
-		System.out.println("result delete product " + result);
 		
         return result;
 	}
