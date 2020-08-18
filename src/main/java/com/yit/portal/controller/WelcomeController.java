@@ -66,7 +66,7 @@ public class WelcomeController {
 	public String save(@RequestParam("id") String id) {
 		
 		Cart c = new Cart();
-		c.setProduct_id(Integer.parseInt(id));
+		c.setProductId(Integer.parseInt(id));
 		
 		Gson gson = new Gson();
 		
@@ -80,7 +80,7 @@ public class WelcomeController {
 	public String deleteItem(@RequestParam("product_id") String product_id) {
 		
 		Cart c = new Cart();
-		c.setProduct_id(Integer.parseInt(product_id));
+		c.setProductId(Integer.parseInt(product_id));
 		
 		Gson gson = new Gson();
 		
