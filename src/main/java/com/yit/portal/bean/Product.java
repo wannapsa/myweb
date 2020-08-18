@@ -12,6 +12,7 @@ public class Product {
 	String description;
 	int price;
 	int instock;
+	int warranty;
 	
 	public int getId() {
 		return id;
@@ -44,6 +45,12 @@ public class Product {
 		this.instock = instock;
 	}
 	
+	public int getWarranty() {
+		return warranty;
+	}
+	public void setWarranty(int warranty) {
+		this.warranty = warranty;
+	}
 	public static List<Product> buildJsonToCallsObject(String json){
 
 		Gson gson = new Gson();

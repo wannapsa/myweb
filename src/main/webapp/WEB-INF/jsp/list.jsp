@@ -72,8 +72,8 @@ function addToCart(id){
 					<tr>
 						<th>Product</th>
 						<th>Description</th>
+						<th>Warranty</th>
 						<th>Price</th>
-						
 						<th></th>
 					</tr>
 				</thead>
@@ -83,6 +83,7 @@ function addToCart(id){
 						<tr>
 							<td>${item.name}</td>
 							<td>${item.description}</td>
+							<td>${item.warranty}</td>
 							<td>${item.price}</td>
 							
 							<td align="left">
