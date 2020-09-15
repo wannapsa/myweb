@@ -58,7 +58,7 @@ function buildTable(data){
 		+'<td>'+json[i].unit+'</td>'
 		+'<td>'+json[i].amount+'</td>'
 		+'<td align="left">'
-			+'<button onclick="deleteCart('+json[i].product_id+')">Delete</button>'
+			+'<button onclick="deleteCart('+json[i].productId+')">Delete</button>'
 		+'</td>'
 		+'</tr>'
 	}
@@ -111,7 +111,7 @@ function buildTable(data){
 							<td>${item.unit}</td>
 							<td>${item.amount}</td>
 							<td align="left">
-								<button onclick="deleteCart(${item.product_id})">Delete</button>
+								<button onclick="deleteCart(${item.productId})">Delete</button>
 							</td>
 						</tr>
 						
