@@ -114,6 +114,7 @@ function buildTable(data){
 								<button onclick="deleteCart(${item.product_id})">Delete</button>
 							</td>
 						</tr>
+						
 					</c:forEach>
 				</tbody>
 			</table>
