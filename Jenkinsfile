@@ -24,14 +24,14 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    dockerImage = docker.build("ball/myweb")
+                    dockerImage = docker.build("podto/myweb")
                 }
             }
         }
         stage('Push image') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'f7df32ad-f4dc-4256-8bd9-00364c3623ad', url: 'https://index.docker.io/v1/') {
+                    withDockerRegistry(credentialsId: '17ed8aad-3b9a-4e31-8622-4fdfc2589bcb', url: 'https://index.docker.io/v1/') {
                         dockerImage.push()
                     }
                 }

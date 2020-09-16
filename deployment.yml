@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: ball/myweb
+        image: podto/myweb
         ports:
         - containerPort: 80
