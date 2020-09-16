@@ -40,8 +40,8 @@ pipeline {
         stage('Deployment') {
             steps {
                 //sh 'kubectl apply -f deployment.yml';
-                sh '/usr/local/bin/kubectl config set-context --current --namespace=ball';
-                sh '/usr/local/bin/kubectl apply -f deployment.yml';
+                
+                sh 'kubectl apply -f deployment.yml';
             }
         }
     }
