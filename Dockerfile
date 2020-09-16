@@ -8,10 +8,10 @@ VOLUME /tmp
 EXPOSE 8080
 
 # Set application's JAR file
-ARG JAR_FILE=target/myweb-tasks-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/myweb-tasks-0.0.1-SNAPSHOT.war
 
 # Add the application's JAR file to the container
-ADD ${JAR_FILE} ROOT.jar
+ADD ${JAR_FILE} ROOT.war
 
 # Run the JAR file
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/ROOT.jar"]
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/ROOT.war"]
