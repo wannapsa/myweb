@@ -31,7 +31,7 @@ pipeline {
         stage('Push image') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: '17ed8aad-3b9a-4e31-8622-4fdfc2589bcb', url: 'https://index.docker.io/v1/') {
+                    withDockerRegistry(credentialsId: '4ef0701d-6141-4a9d-87cf-47b228a17e6f', url: 'https://index.docker.io/v1/') {
                         dockerImage.push()
                     }
                 }
