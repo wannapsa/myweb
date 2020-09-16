@@ -28,7 +28,15 @@ pipeline {
                 }
             }
         }
-        
+        stage('Push image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'f7df32ad-f4dc-4256-8bd9-00364c3623ad', url: 'https://index.docker.io/v1/') {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
         stage('Deployment') {
             steps {
                 sh 'kubectl apply -f deployment.yml';
