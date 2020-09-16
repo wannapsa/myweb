@@ -8,7 +8,7 @@ VOLUME /tmp
 EXPOSE 8080
 
 # Set application's JAR file
-ARG JAR_FILE=target/myweb-tasks-0.0.1-SNAPSHOT.war
+ARG JAR_FILE=target/myweb-tasks.war
 
 # Add the application's JAR file to the container
 ADD ${JAR_FILE} ROOT.war
