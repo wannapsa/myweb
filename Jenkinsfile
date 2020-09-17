@@ -39,10 +39,8 @@ pipeline {
         }
         stage('Deployment') {
             steps {
-            	sh 'kubectl apply -f deployment.yml -n ball';
-                
-                sh 'whoami';
-                
+            	sh 'whoami';
+            	sh '/usr/local/bin/kubectl apply -f deployment.yml -n ball'; 
             }
         }
     }
