@@ -41,7 +41,10 @@ pipeline {
             steps {
                 //sh 'kubectl apply -f deployment.yml';
                 
-                sh 'kubectl apply -f deployment.yml';
+                withKubeConfig(credentialsId: 'kubeconfig2', namespace: 'ball', serverUrl: 'https://gateway.ezmeral.yipintsoigroup.com:10000') {
+    				sh 'kubectl apply -f deployment.yml';
+				}
+                
             }
         }
     }
