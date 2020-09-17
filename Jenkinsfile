@@ -40,7 +40,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 //sh 'kubectl apply -f deployment.yml';
-                sh 'sh who am i'
+                sh 'who am i';
                 
             }
         }
