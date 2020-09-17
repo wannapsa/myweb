@@ -40,7 +40,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 //sh 'kubectl apply -f deployment.yml';
-                sh '/usr/local/bin/kubectl cluster-info'
+                sh 'kubectl cluster-info'
                 
             }
         }
