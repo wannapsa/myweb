@@ -46,15 +46,6 @@ pipeline {
             }
         }
         
-        stage('Verify deployment') {
-			steps {
-				retry(3) {
-					sleep(time: 15, unit: "SECONDS")
-					echo "Test web connectivity"
-					sh "curl -I http://${params.PROD_HOST}:${params.PROD_PORT}/dd"
-				}
-				echo "Test Pass. All Done"
-			}
-		}
+        
     }
 }
