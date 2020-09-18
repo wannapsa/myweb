@@ -15,6 +15,6 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    run: myweb
+    app: myweb
   sessionAffinity: None
   type: NodePort

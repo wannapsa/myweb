@@ -46,6 +46,13 @@ pipeline {
             }
         }
         
+        stage('Rounting Service') {
+            steps {
+            	echo "Applying Services"
+				sh "/usr/local/bin/kubectl apply -f svc-webexample.yaml -n ball" 
+            }
+        }
+        
         
     }
 }
