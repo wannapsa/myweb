@@ -40,8 +40,21 @@ pipeline {
         stage('Deployment') {
             steps {
             	sh 'whoami';
-            	sh '/usr/local/bin/kubectl apply -f deployment.yml -n ball'; 
+            	sh '/usr/local/bin/kubectl apply -f deployment.yml -n ball';
+            	echo "Applying Services"
+				sh "/usr/local/bin/kubectl apply -f svc-webexample.yaml -n ball" 
             }
         }
+        
+        stage('Verify deployment') {
+			steps {
+				retry(3) {
+					sleep(time: 15, unit: "SECONDS")
+					echo "Test web connectivity"
+					sh "curl -I http://${params.PROD_HOST}:${params.PROD_PORT}/dd"
+				}
+				echo "Test Pass. All Done"
+			}
+		}
     }
 }
