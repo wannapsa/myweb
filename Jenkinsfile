@@ -41,8 +41,7 @@ pipeline {
             steps {
             	sh 'whoami';
             	sh '/usr/local/bin/kubectl apply -f deployment.yml -n ball';
-            	echo "Applying Services"
-				sh "/usr/local/bin/kubectl apply -f svc-webexample.yaml -n ball" 
+            	
             }
         }
         

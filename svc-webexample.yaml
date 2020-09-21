@@ -6,7 +6,6 @@ metadata:
     run: myweb
     hpecp.hpe.com/hpecp-internal-gateway: "true"
   name: myweb-service
-  namespace: ball
 spec:
   externalTrafficPolicy: Cluster
   ports:

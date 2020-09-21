@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: podto/myweb
+        image: {{IMAGE}}
         ports:
         - containerPort: 80
